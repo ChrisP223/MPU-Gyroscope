@@ -28,11 +28,12 @@ This project uses the MPU6050 sensor to calculate **roll, pitch, and yaw angles*
 3) Press Ctrl-C when you're done recording data.
 4) Run visualizer.py to view the movement in 3D.
 
+A testing case can be found in the video within the repo.
+
 ## Wiring
-The wiring for the Arduino Uno is this:
+
 ![Wiring Diagram](MPU_WIRING.png)
 
-## Format
-For the 3D Visualizer, data is given in this format(comma seperated):
-![Data]()
+
+
 
