@@ -1,11 +1,11 @@
 # MPU6050 Angle Tracking (Arduino)
 
-This project uses the MPU6050 sensor to calculate **roll, pitch, and yaw angles** on an Arduino. It applies a **complementary filter** to combine accelerometer and gyroscope data, resulting in smooth and reliable orientation tracking.
+This project uses the MPU6050 sensor to calculate **roll, pitch, and yaw angles** on an Arduino.
 
 ## Features
-- Real-time roll, pitch, and yaw output
+- Live roll, pitch, and yaw output
 - Gyroscope auto-calibration on startup
-- Noise reduction using small-angle thresholding
+- Noise reduction
 - Serial output in CSV format
 
 ## Hardware 
@@ -29,4 +29,10 @@ This project uses the MPU6050 sensor to calculate **roll, pitch, and yaw angles*
 4) Run visualizer.py to view the movement in 3D.
 
 ## Wiring
-The Arduino prints data in this format:
+The wiring for the Arduino Uno is this:
+![Wiring Diagram](MPU_WIRING.png)
+
+## Format
+For the 3D Visualizer, data is given in this format(comma seperated):
+![Data]()
+
