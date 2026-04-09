@@ -35,5 +35,8 @@ A testing case can be found in the video within the repo.
 ![Wiring Diagram](MPU_WIRING.png)
 
 
+![Wiring](mpu_wiring.png)
+
+
 
 
