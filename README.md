@@ -38,7 +38,7 @@ A testing case can be found in the video within the repo.
 ![Wiring](mpu_wiring.png)
 
 ## Visualizer Example
-![Visualizer](visualizer_example.png)
+![Visualizer](Visualizer_example.png)
 
 
 
