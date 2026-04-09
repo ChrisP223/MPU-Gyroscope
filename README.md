@@ -1,6 +1,6 @@
 # MPU6050 Angle Tracking (Arduino)
 
-This project uses the MPU6050 sensor to calculate **roll, pitch, and yaw angles** on an Arduino.
+This project uses the MPU6050 sensor to calculate **roll, pitch, and yaw angles** on an Arduino, track the data in a .txt file and display it on a 3D visualizer!
 
 ## Features
 - Live roll, pitch, and yaw output
