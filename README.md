@@ -25,7 +25,7 @@ This project uses the MPU6050 sensor to calculate **roll, pitch, and yaw angles*
 ## ⚠️ Running Instructions ⚠️
 1) Upload the .ino code to the Arduino Uno, while wired in your device.
 2) Run pythonterminal.py IN THE TERMINAL, while arduino IDE is closed. (This avoids port conflicts)
-3) Press Ctrl-C when you're done recording data.
+3) Press Ctrl-C when you're done recording data(to get data just shake around the breadboard).
 4) Run visualizer.py to view the movement in 3D.
 
 A testing case can be found in the video within the repo.
