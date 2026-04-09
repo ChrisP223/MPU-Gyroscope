@@ -1,9 +1,18 @@
+'''
+pip install numpy
+pip install PyQt6
+pip install pyqtgraph
+pip install PyOpenGL
+pip install PyOpenGL_accelerate'''
+
+
 import time
 import numpy as np
 import pyqtgraph as pg
 import pyqtgraph.opengl as gl
 from pyqtgraph.Qt import QtCore
-
+import os
+os.environ["PYQTGRAPH_QT_LIB"] = "PyQt6"
 #Το αρχείο που περιέχει τις κινήσεις του αισθητήρα
 FILE = "movement.txt"
 
@@ -24,9 +33,8 @@ for line in lines:
         except:
             pass
 
-print(f"Φορτώθηκαν {len(frames)} καρέ")
+print(f"Φορτώθηκαν {len(frames)} frames")
 
-#Δημιουργία  παραθύρου Visualizer
 app = pg.mkQApp("Visualizer")
 w = gl.GLViewWidget()
 w.setWindowTitle("Movement Replay")
@@ -72,7 +80,7 @@ g = gl.GLGridItem()
 g.scale(2, 2, 1)
 w.addItem(g)
 
-# Άξονες αναφοράς (κόκκινος=X, πράσινος=Y, μπλε=Z)
+# Άξονες αναφοράς(R=X, G=Y, Β=Z)
 xaxis = gl.GLLinePlotItem(pos=np.array([[0,0,0],[2,0,0]]), color=(1,0,0,1), width=2)
 yaxis = gl.GLLinePlotItem(pos=np.array([[0,0,0],[0,2,0]]), color=(0,1,0,1), width=2)
 zaxis = gl.GLLinePlotItem(pos=np.array([[0,0,0],[0,0,2]]), color=(0,0,1,1), width=2)
