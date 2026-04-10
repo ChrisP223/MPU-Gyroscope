@@ -36,6 +36,8 @@ pitch, and yaw. A Python tool logs the data and a 3D visualizer replays it with 
 3. Run `pythonterminal.py` in the terminal.
 4. Press `Ctrl+C` to stop recording. Data (5 columns) saves to `movement.txt`. (To record data just move the breadboard)
 5. Run `visualiser.py` to replay the 3D visualization and view raw vs. filtered plots.
+
+   
 **Note that I already have a prefiled movement.txt so you can test the visualizer right away!**
    
 ## CSV Data Format
