@@ -36,6 +36,7 @@ pitch, and yaw. A Python tool logs the data and a 3D visualizer replays it with 
 3. Run `pythonterminal.py` in the terminal.
 4. Press `Ctrl+C` to stop recording. Data (5 columns) saves to `movement.txt`. (To record data just move the breadboard)
 5. Run `visualiser.py` to replay the 3D visualization and view raw vs. filtered plots.
+**Note that I already have a prefiled movement.txt so you can test the visualizer right away!**
    
 ## CSV Data Format
 Each row in `movement.txt` contains 5 columns:
@@ -47,8 +48,8 @@ Each row in `movement.txt` contains 5 columns:
 
 ### Complementary Filter
 The filter combines two imperfect sensors to get one good estimate. The gyroscope is smooth but
-slowly goes off over time. The accelerometer is stable long term but shaky. By mixing them
-(95% gyroscope, 5% accelerometer each update), the result is both smooth and accurate(i hope).
+slowly goes wayyy off over time. The accelerometer is stable long term but shaky. By mixing them
+(95% gyroscope, 5% accelerometer), the result is both smooth and accurate(i hope).
 
 ### Noise
 The raw accelerometer angle jumps around A LOT, especially when the sensor is moving quickly.
