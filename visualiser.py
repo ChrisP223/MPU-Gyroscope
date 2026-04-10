@@ -127,7 +127,7 @@ plot_layout.addWidget(yaw_plot)
 
 main_win.show()
 
-HISTORY = 200  # number of frames to show in the rolling window
+HISTORY = 100  # number of frames to show in the rolling window
 roll_raw_hist   = []
 pitch_raw_hist  = []
 roll_filt_hist  = []
@@ -170,7 +170,7 @@ def update():
 
 timer = QtCore.QTimer()
 timer.timeout.connect(update)
-timer.start(50)
+timer.start(5)
 
 if __name__ == "__main__":
     pg.exec()
