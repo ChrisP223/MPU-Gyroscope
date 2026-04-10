@@ -75,7 +75,7 @@ may be depicted worse.
 ![Wiring](mpu_wiring.png)
 
 ## Visualizer Example
-![Visualizer](Visualizer_example.png)
+![Visualizer](Screenshot111.png)
 
 ## Demo Video
 
