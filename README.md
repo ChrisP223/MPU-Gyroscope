@@ -31,7 +31,7 @@ pitch, and yaw. A Python tool logs the data and a 3D visualizer replays it with 
 
 ## Running Instructions
 1. Upload `MPU_CODE.ino` to the Arduino Uno while wired up.
-2. Keep the sensor **completely still** for ~2 seconds on startup — it's calibrating gyro Z bias.
+2. Keep the sensor **completely still** for 3 seconds on startup ! it's calibrating gyro Z bias.
 3. Close Arduino IDE to free the port (if its still open there will be port conflict). **SOS**
 4. Run `pythonterminal.py` in the terminal.
 5. Press `Ctrl+C` to stop recording. Data saves to `movement.txt`.
@@ -52,18 +52,17 @@ The accelerometer is stable long term but shaky. Mixing them (98% gyro, 2% accel
 
 ### Yaw
 Yaw has no accelerometer reference, gravity is vertical so it can't tell you which way you're facing.
-It's pure gyro integration with a manually measured bias removed at startup. Drift is unavoidable without a magnetometer.
+It's pure gyro integration with a manually measured bias removed at startup. Drift is unavoidable without a magnetometer. :(
 
 The MPU6050_tockn library's `calcGyroOffsets()` was found to overcorrect the Z axis, zeroing out gz entirely.
-The fix: zero the library offsets with `setGyroOffsets(0,0,0)`, then measure gz bias manually over 500 samples at startup.
+The fix is to zero the library offsets with `setGyroOffsets(0,0,0)`, then measure gz bias manually
 
 ### Noise
-Raw accelerometer angles jump around a lot during fast motion. The filter cleans this up, though it can be
+Raw accelerometer angles jump around a lot during fast motion. The filter cleans this up but it can be
 slightly slow to react to very quick movements.
 
 ### Gyroscope Drift
-Small measurement errors accumulate over time, causing angle estimates to drift. Yaw is worst affected
-since roll and pitch have accelerometer correction to pull them back.
+Small measurement errors accumulate over time, causing angle estimates to drift
 
 ### Rate
 Loop runs at 50ms. Slow movements are captured well. Very fast rotations may be depicted worse.
