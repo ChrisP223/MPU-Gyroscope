@@ -1,12 +1,12 @@
 # MPU6050 Real-Time IMU Sensor Fusion 
 
 This project implements a live orientation estimator using an MPU6050 IMU on an Arduino Uno.
-Raw accelerometer and gyroscope data are fused using a **complementary filter** to estimate roll,
+Raw accelerometer and gyroscope data are processed using a **complementary filter** to estimate roll,
 pitch, and yaw. A Python tool logs the data and a 3D visualizer replays it with a comparison of raw vs. filtered signals.
 
 ## Features
 - Complementary filter sensor fusion (α=0.95 gyro, α=0.05 accel)
-- Gyroscope auto-calibration on startup
+- Gyroscope auto calibration on startup
 - Raw vs. filtered angle output for comparison
 - Serial output in CSV format
 - 3D visualizer
@@ -32,9 +32,9 @@ pitch, and yaw. A Python tool logs the data and a 3D visualizer replays it with 
 
 ## Running Instructions
 1. Upload `MPU_CODE.ino` to the Arduino Uno while wired up.
-2. Close Arduino IDE to free the port (if its still open there will be port conflict).
+2. Close Arduino IDE to free the port (if its still open there will be port conflict). **SOS**
 3. Run `pythonterminal.py` in the terminal.
-4. Press `Ctrl+C` to stop recording. Data (5 columns) saves to `movement.txt`. (To record data just move the breadboard)
+4. Press `Ctrl+C` to stop recording. Data saves to `movement.txt`. (To record data just move the breadboard)
 5. Run `visualiser.py` to replay the 3D visualization and view raw vs. filtered plots.
 
    
@@ -42,7 +42,7 @@ pitch, and yaw. A Python tool logs the data and a 3D visualizer replays it with 
    
 ## CSV Data Format
 Each row in `movement.txt` contains 5 columns:
-- **roll_raw / pitch_raw** — angle calculated from the accelerometer ONLY(shaky)
+- **roll_raw / pitch_raw**  angle calculated from the accelerometer ONLY(shaky)
 - **roll_filtered / pitch_filtered / yaw_filtered** angle after filtering(smooth)
 
 
