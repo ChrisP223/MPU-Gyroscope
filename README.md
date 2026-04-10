@@ -41,8 +41,8 @@ pitch, and yaw. A Python tool logs the data and a 3D visualizer replays it with 
 
 ## CSV Data Format
 Each row in `movement.txt` contains 5 columns:
-- **roll_raw / pitch_raw** — angle from accelerometer only (shaky)
-- **roll_filtered / pitch_filtered / yaw_filtered** — angle after filtering (smooth)
+- **roll_raw / pitch_raw**  angle from accelerometer only (shaky)
+- **roll_filtered / pitch_filtered / yaw_filtered**  angle after filtering (smooth)
 
 ## Analysis: Noise, Drift, and Limitations
 
