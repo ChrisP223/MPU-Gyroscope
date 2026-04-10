@@ -1,35 +1,44 @@
-# MPU6050 Angle Tracking (Arduino)
+# MPU6050 Real-Time IMU Sensor Fusion 
 
-This project uses the MPU6050 sensor to calculate **roll, pitch, and yaw angles** on an Arduino, track the data in a .txt file and display it on a 3D visualizer!
+This project implements a live orientation estimator using an MPU6050 IMU on an Arduino Uno.
+Raw accelerometer and gyroscope data are fused using a **complementary filter** to estimate roll,
+pitch, and yaw. A Python tool logs the data and a 3D visualizer replays it with a comparison of raw vs. filtered signals.
 
 ## Features
-- Live roll, pitch, and yaw output
+- Complementary filter sensor fusion (α=0.95 gyro, α=0.05 accel)
 - Gyroscope auto-calibration on startup
-- Noise reduction
+- Raw vs. filtered angle output for comparison
 - Serial output in CSV format
+- 3D orientation visualizer
+- 2D **live** plots comparing raw and filtered roll/pitch/yaw
 
-## Hardware 
+## Hardware
 - Arduino Uno
 - MPU6050 sensor module
 - Jumper wires
-- Mini Breadboard (optional)
+- Mini Breadboard(optional)
 
-## Libraries 
+## Libraries
 ### Arduino
 - MPU6050_tockn
 - Wire
+
 ### Python
+- PyQt6
 - pyqtgraph
+- PyOpenGL
+- PyOpenGL_accelerate
 - numpy
 
-## ⚠️ Running Instructions ⚠️
-1) Upload the .ino code to the Arduino Uno, while wired in your device.
-2) Run pythonterminal.py IN THE TERMINAL, while arduino IDE is closed. (This avoids port conflicts)
-3) Press Ctrl-C when you're done recording data(to get data just shake around the breadboard).
-4) Run visualizer.py to view the movement in 3D.
+## Running Instructions
+1. Upload `MPU_CODE.ino` to the Arduino Uno while wired up.
+2. Close Arduino IDE to free the port (if its still open there will be port conflict).
+3. Run `pythonterminal.py` in the terminal.
+4. Press `Ctrl+C` to stop recording. Data (5 columns) saves to `movement.txt`. (To record data just move the breadboard)
+5. Run `visualiser.py` to replay the 3D visualization and view raw vs. filtered plots.
 
-A testing case can be found in the video within the repo.
-
+## CSV Data Format
+Each row in `movement.txt` contains 5 columns:
 ## Wiring
 
 ![Wiring Diagram](MPU_WIRING.png)
