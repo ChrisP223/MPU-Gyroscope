@@ -58,10 +58,11 @@ The raw accelerometer angle jumps around A LOT, especially when the sensor is mo
 The filter cleans this up, though it can be slightly slow to react to very quick movements.
 
 ### Gyroscope Drift
-The gyroscope measures how fast the sensor is rotating, and the code adds those up over time to
-get an angle. Small measurement errors add up too, so the angle slowly creeps away from reality.
-**Yaw** (left/right rotation) is the worst affected because there is nothing to correct it —
-unlike roll and pitch, which are kept honest by the direction of gravity.
+The gyroscope measures angular velocity, which is integrated over time to estimate orientation.
+Small measurement errors accumulate, causing the estimated angle to drift away from the true value.
+
+**Yaw** (left/right rotation) is the worst affected because there is nothing to correct it.
+unlike roll and pitch, which are more accurate.
 ### Rate
 Loop runs at 50ms. Slow  movements are captured well.Very fast rotations
 may be depicted worse.
