@@ -40,15 +40,15 @@ TARGET_SECONDS = 10
 MAX_FPS = 60  
 HISTORY = 100
 
-# Calculate speed
+# Calculate speed 
 desired_fps = len(frames) / TARGET_SECONDS
 
 if desired_fps <= MAX_FPS:
-    # Few frames - display all, adjust timer to slow down
+    #Few frames slow down
     TIMER_MS = max(15, int(1000 / desired_fps))
     SKIP = 1
 else:
-    # Many frames - skip some
+    #Many frames - skip some
     TIMER_MS = int(1000 / MAX_FPS)
     SKIP = max(1, int(desired_fps / MAX_FPS))
 
