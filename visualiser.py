@@ -36,6 +36,24 @@ for line in lines:
 
 print(f"Loaded {len(frames)} frames")
 
+TARGET_SECONDS = 10
+MAX_FPS = 60  
+HISTORY = 100
+
+# Calculate speed
+desired_fps = len(frames) / TARGET_SECONDS
+
+if desired_fps <= MAX_FPS:
+    # Few frames - display all, adjust timer to slow down
+    TIMER_MS = max(15, int(1000 / desired_fps))
+    SKIP = 1
+else:
+    # Many frames - skip some
+    TIMER_MS = int(1000 / MAX_FPS)
+    SKIP = max(1, int(desired_fps / MAX_FPS))
+
+print(f"TIMER_MS = {TIMER_MS}, SKIP = {SKIP} (playback ~{TARGET_SECONDS}s)")
+
 app = pg.mkQApp("Visualizer")
 
 # 3D 2D comparison
@@ -96,7 +114,7 @@ plot_layout = QtWidgets.QVBoxLayout()
 plot_panel.setLayout(plot_layout)
 layout.addWidget(plot_panel)
 
-#Roll
+# Roll plot
 roll_plot = pg.PlotWidget(title="Roll: Raw vs Filtered")
 roll_plot.setLabel('left', 'Angle', units='°')
 roll_plot.setLabel('bottom', 'Frame')
@@ -106,7 +124,7 @@ curve_roll_raw  = roll_plot.plot(pen=pg.mkPen('r', width=1), name='Raw Roll')
 curve_roll_filt = roll_plot.plot(pen=pg.mkPen('g', width=2), name='Filtered Roll')
 plot_layout.addWidget(roll_plot)
 
-# Pitch 
+# Pitch plot
 pitch_plot = pg.PlotWidget(title="Pitch: Raw vs Filtered")
 pitch_plot.setLabel('left', 'Angle', units='°')
 pitch_plot.setLabel('bottom', 'Frame')
@@ -116,7 +134,7 @@ curve_pitch_raw  = pitch_plot.plot(pen=pg.mkPen('y', width=1), name='Raw Pitch')
 curve_pitch_filt = pitch_plot.plot(pen=pg.mkPen('c', width=2), name='Filtered Pitch')
 plot_layout.addWidget(pitch_plot)
 
-#Yaw
+# Yaw plot
 yaw_plot = pg.PlotWidget(title="Yaw: Filtered Only (no accel reference)")
 yaw_plot.setLabel('left', 'Angle', units='°')
 yaw_plot.setLabel('bottom', 'Frame')
@@ -125,10 +143,6 @@ curve_yaw = yaw_plot.plot(pen=pg.mkPen('m', width=2), name='Filtered Yaw')
 plot_layout.addWidget(yaw_plot)
 
 main_win.show()
-
-HISTORY = 100
-SKIP    = 3  #frames consumed per tick
-
 
 roll_raw_hist   = deque(maxlen=HISTORY)
 pitch_raw_hist  = deque(maxlen=HISTORY)
@@ -153,9 +167,9 @@ def update():
     yaw_filt_hist.append(yaw_filt)
 
     mesh.resetTransform()
-    mesh.rotate(yaw_filt,   0, 0, 1) #Z
-    mesh.rotate(pitch_filt, 0, 1, 0) #Y
-    mesh.rotate(roll_filt,  1, 0, 0) #X
+    mesh.rotate(yaw_filt,   0, 0, 1)  # Z
+    mesh.rotate(pitch_filt, 0, 1, 0)  # Y
+    mesh.rotate(roll_filt,  1, 0, 0)  # X
 
     curve_roll_raw.setData(list(roll_raw_hist))
     curve_roll_filt.setData(list(roll_filt_hist))
@@ -165,7 +179,7 @@ def update():
 
 timer = QtCore.QTimer()
 timer.timeout.connect(update)
-timer.start(15)
+timer.start(TIMER_MS)
 
 if __name__ == "__main__":
     pg.exec()
